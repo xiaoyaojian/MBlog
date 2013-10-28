@@ -1,0 +1,51 @@
+﻿@model MiaoBlog.Controllers.ViewModels.Account.AccountView
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+<h2>注册</h2>
+
+@if (Model.HasIssue)
+{ 
+    <div class="alert alert-error">
+        @Html.Encode(Model.Message)s
+    </div>
+}
+
+@using (Html.BeginForm("Register","AccountRegister",FormMethod.Post,new{@class="form-horizontal"}))
+{ 
+    <div class="control-group">
+        <label class="control-label" for="email">Email</label>
+        <div class="controls">
+            <input type="text" id="email" name="email" placeholder="Email" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="password">Password</label>
+        <div class="controls">
+            <input type="password" id="password" name="password" placeholder="Password" />
+        </div>
+    </div>
+    
+    <div class="control-group">
+        <label class="control-label" for="confirm-password">Password</label>
+        <div class="controls">
+            <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" />
+        </div>
+    </div>
+    
+    <div class="control-group">
+        <label class="control-label" for="name">Name</label>
+        <div class="controls">
+            <input type="text" id="name" name="name" placeholder="Name" />
+        </div>
+    </div>
+    
+    <div class="control-group">
+        <div class="controls">
+            <button type="submit" class="btn btn-primary">注册</button>
+        </div>
+    </div>
+}

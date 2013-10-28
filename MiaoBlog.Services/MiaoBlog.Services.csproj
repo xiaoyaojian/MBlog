@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F60084CD-0865-4551-9452-642434C5FA17}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MiaoBlog.Services</RootNamespace>
+    <AssemblyName>MiaoBlog.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Implementations\ArticleCatalogService.cs" />
+    <Compile Include="Implementations\UserInvalidException.cs" />
+    <Compile Include="Implementations\UserService.cs" />
+    <Compile Include="Interfaces\IArticleCatalogService.cs" />
+    <Compile Include="Interfaces\IUserService.cs" />
+    <Compile Include="Mapping\ArticleMapper.cs" />
+    <Compile Include="Mapping\CategoryMapper.cs" />
+    <Compile Include="Mapping\CommentMapper.cs" />
+    <Compile Include="Mapping\TagMapper.cs" />
+    <Compile Include="Mapping\UserMapper.cs" />
+    <Compile Include="Messaging\ArticleCatalogService\CreateArticleRequest.cs" />
+    <Compile Include="Messaging\ArticleCatalogService\CreateArticleResponse.cs" />
+    <Compile Include="Messaging\ArticleCatalogService\GetAllCategoriesResponse.cs" />
+    <Compile Include="Messaging\ArticleCatalogService\GetArticleRequest.cs" />
+    <Compile Include="Messaging\ArticleCatalogService\GetArticleResponse.cs" />
+    <Compile Include="Messaging\ArticleCatalogService\GetArticlesByCategoryRequest.cs" />
+    <Compile Include="Messaging\ArticleCatalogService\GetArticlesByCategoryResponse.cs" />
+    <Compile Include="Messaging\ArticleCatalogService\GetArticlesRequest.cs" />
+    <Compile Include="Messaging\ArticleCatalogService\GetArticlesResponse.cs" />
+    <Compile Include="Messaging\UserService\CreateUserRequest.cs" />
+    <Compile Include="Messaging\UserService\CreateUserResponse.cs" />
+    <Compile Include="Messaging\UserService\GetUserRequest.cs" />
+    <Compile Include="Messaging\UserService\GetUserResponse.cs" />
+    <Compile Include="Messaging\UserService\ModifyUserRequest.cs" />
+    <Compile Include="Messaging\UserService\ModifyUserResponse.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ArticleSummaryView.cs" />
+    <Compile Include="ViewModels\ArticleView.cs" />
+    <Compile Include="ViewModels\CategoryView.cs" />
+    <Compile Include="ViewModels\CommentSummaryView.cs" />
+    <Compile Include="ViewModels\TagSummaryView.cs" />
+    <Compile Include="ViewModels\UserView.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MiaoBlog.Infrastructure\MiaoBlog.Infrastructure.csproj">
+      <Project>{8d3e4ecb-20fc-42e7-87e1-4b4865707d60}</Project>
+      <Name>MiaoBlog.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MiaoBlog.Model\MiaoBlog.Model.csproj">
+      <Project>{7b708097-bab4-425c-bfdc-9621ad0962c3}</Project>
+      <Name>MiaoBlog.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

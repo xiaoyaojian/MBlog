@@ -1,0 +1,36 @@
+﻿@model MiaoBlog.Controllers.ViewModels.Account.AccountView
+
+@{
+    ViewBag.Title = "LogOn";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+<h2>LogOn</h2>
+@if (Model.HasIssue)
+{ 
+    <div class="alert alert-error">
+        @Html.Encode(Model.Message)
+    </div>
+}
+
+@using (Html.BeginForm("LogOn","AccountLogOn",FormMethod.Post,new{@class="form-horizontal"}))
+{ 
+    <div class="control-group">
+        <label class="control-label" for="email">Email</label>
+        <div class="controls">
+            <input type="text" id="email" name="email" placeholder="Email" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="password">Password</label>
+        <div class="controls">
+            <input type="text" id="password" name="password" placeholder="Password" />
+        </div>
+    </div>
+    
+    <div class="control-group">
+        <div class="controls">
+            <button type="submit" class="btn btn-primary">登陆</button>
+        </div>
+    </div>
+}

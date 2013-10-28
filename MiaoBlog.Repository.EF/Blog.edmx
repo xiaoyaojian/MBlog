@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MiaoBlogModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="MiaoBlogModelStoreContainer">
+          <EntitySet Name="Blog_Article" EntityType="MiaoBlogModel.Store.Blog_Article" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Blog_Article_Tag" EntityType="MiaoBlogModel.Store.Blog_Article_Tag" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Blog_Category" EntityType="MiaoBlogModel.Store.Blog_Category" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Blog_Comment" EntityType="MiaoBlogModel.Store.Blog_Comment" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Blog_Tag" EntityType="MiaoBlogModel.Store.Blog_Tag" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="MiaoBlogModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Blog_Article_Blog_Category" Association="MiaoBlogModel.Store.FK_Blog_Article_Blog_Category">
+            <End Role="Blog_Category" EntitySet="Blog_Category" />
+            <End Role="Blog_Article" EntitySet="Blog_Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Blog_Article_Tag_Blog_Article" Association="MiaoBlogModel.Store.FK_Blog_Article_Tag_Blog_Article">
+            <End Role="Blog_Article" EntitySet="Blog_Article" />
+            <End Role="Blog_Article_Tag" EntitySet="Blog_Article_Tag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Blog_Article_Tag_Blog_Tag" Association="MiaoBlogModel.Store.FK_Blog_Article_Tag_Blog_Tag">
+            <End Role="Blog_Tag" EntitySet="Blog_Tag" />
+            <End Role="Blog_Article_Tag" EntitySet="Blog_Article_Tag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Blog_Comment_Blog_Article" Association="MiaoBlogModel.Store.FK_Blog_Comment_Blog_Article">
+            <End Role="Blog_Article" EntitySet="Blog_Article" />
+            <End Role="Blog_Comment" EntitySet="Blog_Comment" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Blog_Article">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="Content" Type="ntext" Nullable="false" />
+          <Property Name="Visable" Type="bit" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Blog_Article_Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleId" Type="int" Nullable="false" />
+          <Property Name="TagId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Blog_Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Blog_Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CommentTime" Type="datetime" Nullable="false" />
+          <Property Name="Content" Type="ntext" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="ArticleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Blog_Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdentityToken" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_Blog_Article_Blog_Category">
+          <End Role="Blog_Category" Type="MiaoBlogModel.Store.Blog_Category" Multiplicity="1" />
+          <End Role="Blog_Article" Type="MiaoBlogModel.Store.Blog_Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blog_Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Blog_Article">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Blog_Article_Tag_Blog_Article">
+          <End Role="Blog_Article" Type="MiaoBlogModel.Store.Blog_Article" Multiplicity="1" />
+          <End Role="Blog_Article_Tag" Type="MiaoBlogModel.Store.Blog_Article_Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blog_Article">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Blog_Article_Tag">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Blog_Article_Tag_Blog_Tag">
+          <End Role="Blog_Tag" Type="MiaoBlogModel.Store.Blog_Tag" Multiplicity="1" />
+          <End Role="Blog_Article_Tag" Type="MiaoBlogModel.Store.Blog_Article_Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blog_Tag">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Blog_Article_Tag">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Blog_Comment_Blog_Article">
+          <End Role="Blog_Article" Type="MiaoBlogModel.Store.Blog_Article" Multiplicity="1" />
+          <End Role="Blog_Comment" Type="MiaoBlogModel.Store.Blog_Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blog_Article">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Blog_Comment">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MiaoBlog.Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BlogEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Blog_Article" EntityType="MiaoBlog.Model.Article" />
+          <EntitySet Name="Blog_Category" EntityType="MiaoBlog.Model.Category" />
+          <EntitySet Name="Blog_Comment" EntityType="MiaoBlog.Model.Comment" />
+          <EntitySet Name="Blog_Tag" EntityType="MiaoBlog.Model.Tag" />
+          <AssociationSet Name="FK_Blog_Article_Blog_Category" Association="MiaoBlog.Model.FK_Blog_Article_Blog_Category">
+            <End Role="Blog_Category" EntitySet="Blog_Category" />
+            <End Role="Blog_Article" EntitySet="Blog_Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Blog_Comment_Blog_Article" Association="MiaoBlog.Model.FK_Blog_Comment_Blog_Article">
+            <End Role="Blog_Article" EntitySet="Blog_Article" />
+            <End Role="Blog_Comment" EntitySet="Blog_Comment" />
+          </AssociationSet>
+          <EntitySet Name="Blog_Article_Tag" EntityType="MiaoBlog.Model.Article_Tag" />
+          <AssociationSet Name="FK_Blog_Article_Tag_Blog_Article" Association="MiaoBlog.Model.FK_Blog_Article_Tag_Blog_Article">
+            <End Role="Article" EntitySet="Blog_Article" />
+            <End Role="Blog_Article_Tag" EntitySet="Blog_Article_Tag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Blog_Article_Tag_Blog_Tag" Association="MiaoBlog.Model.FK_Blog_Article_Tag_Blog_Tag">
+            <End Role="Tag" EntitySet="Blog_Tag" />
+            <End Role="Blog_Article_Tag" EntitySet="Blog_Article_Tag" />
+          </AssociationSet>
+          <EntitySet Name="User" EntityType="MiaoBlog.Model.User" />
+        </EntityContainer>
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Visable" Type="Boolean" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="MiaoBlog.Model.FK_Blog_Article_Blog_Category" FromRole="Blog_Article" ToRole="Blog_Category" />
+          <NavigationProperty Name="Comments" Relationship="MiaoBlog.Model.FK_Blog_Comment_Blog_Article" FromRole="Blog_Article" ToRole="Blog_Comment" />
+          <NavigationProperty Name="ArticleTags" Relationship="MiaoBlog.Model.FK_Blog_Article_Tag_Blog_Article" FromRole="Article" ToRole="Blog_Article_Tag" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Articles" Relationship="MiaoBlog.Model.FK_Blog_Article_Blog_Category" FromRole="Blog_Category" ToRole="Blog_Article" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CommentTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ArticleId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Article" Relationship="MiaoBlog.Model.FK_Blog_Comment_Blog_Article" FromRole="Blog_Comment" ToRole="Blog_Article" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="ArticleTags" Relationship="MiaoBlog.Model.FK_Blog_Article_Tag_Blog_Tag" FromRole="Tag" ToRole="Blog_Article_Tag" />
+        </EntityType>
+        <Association Name="FK_Blog_Article_Blog_Category">
+          <End Role="Blog_Category" Type="MiaoBlog.Model.Category" Multiplicity="1" />
+          <End Role="Blog_Article" Type="MiaoBlog.Model.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blog_Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Blog_Article">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Blog_Comment_Blog_Article">
+          <End Role="Blog_Article" Type="MiaoBlog.Model.Article" Multiplicity="1" />
+          <End Role="Blog_Comment" Type="MiaoBlog.Model.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blog_Article">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Blog_Comment">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Article_Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ArticleId" Nullable="false" />
+          <Property Type="Int32" Name="TagId" Nullable="false" />
+          <NavigationProperty Name="Article" Relationship="MiaoBlog.Model.FK_Blog_Article_Tag_Blog_Article" FromRole="Blog_Article_Tag" ToRole="Article" />
+          <NavigationProperty Name="Tag" Relationship="MiaoBlog.Model.FK_Blog_Article_Tag_Blog_Tag" FromRole="Blog_Article_Tag" ToRole="Tag" />
+        </EntityType>
+        <Association Name="FK_Blog_Article_Tag_Blog_Article">
+          <End Type="MiaoBlog.Model.Article" Role="Article" Multiplicity="1" />
+          <End Type="MiaoBlog.Model.Article_Tag" Role="Blog_Article_Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Blog_Article_Tag">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Blog_Article_Tag_Blog_Tag">
+          <End Type="MiaoBlog.Model.Tag" Role="Tag" Multiplicity="1" />
+          <End Type="MiaoBlog.Model.Article_Tag" Role="Blog_Article_Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Blog_Article_Tag">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="IdentityToken" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MiaoBlogModelStoreContainer" CdmEntityContainer="BlogEntities">
+          <EntitySetMapping Name="Blog_Article">
+            <EntityTypeMapping TypeName="MiaoBlog.Model.Article">
+              <MappingFragment StoreEntitySet="Blog_Article">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Visable" ColumnName="Visable" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Blog_Category">
+            <EntityTypeMapping TypeName="MiaoBlog.Model.Category">
+              <MappingFragment StoreEntitySet="Blog_Category">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Blog_Comment">
+            <EntityTypeMapping TypeName="MiaoBlog.Model.Comment">
+              <MappingFragment StoreEntitySet="Blog_Comment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CommentTime" ColumnName="CommentTime" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Blog_Tag">
+            <EntityTypeMapping TypeName="MiaoBlog.Model.Tag">
+              <MappingFragment StoreEntitySet="Blog_Tag">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Blog_Article_Tag">
+            <EntityTypeMapping TypeName="MiaoBlog.Model.Article_Tag">
+              <MappingFragment StoreEntitySet="Blog_Article_Tag">
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="MiaoBlog.Model.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IdentityToken" ColumnName="IdentityToken" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

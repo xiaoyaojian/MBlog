@@ -1,0 +1,50 @@
+﻿body {
+    font-size: .85em;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    color: #232323;
+    background-color: #fff;
+}
+
+
+
+#header,#main {
+    width:960px;
+    margin:0px auto;
+    overflow:auto;
+}
+
+#catalog {
+    width:260px;
+    float:left;
+}
+#content {
+    width:690px;
+    float:right;
+}
+
+
+
+/*=========================
+ *
+ *
+ */
+.article-summary-title {
+    margin-bottom: 10px;
+    font-size: 22px;
+    font-family: 'Microsoft Yahei';
+}
+.article-summary-expert {
+    min-height: 95px;
+    color: #555;
+    margin-bottom: 10px;
+}
+.tag-summary {
+    display: inline-block;
+    margin-right: 10px;
+}
+.thumbnails {
+    float: left;
+}
+.article-summary {
+    margin-left: 15px;  float: left;  width: 685px;
+}

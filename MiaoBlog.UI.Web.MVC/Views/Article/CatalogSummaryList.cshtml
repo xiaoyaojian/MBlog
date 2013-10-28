@@ -1,0 +1,14 @@
+﻿@using MiaoBlog.Services.ViewModels
+@model IEnumerable<CategoryView>
+
+<ul class="nav nav-pills nav-stacked">
+     <li class="nav-header">文章分类</li>
+    <li class="divider"></li>
+    @foreach (CategoryView view in Model)
+    { 
+        <li>
+            @Html.ActionLink(view.Name, "List", "Article", new { categoryId = view.Id },null)
+        </li>
+    }
+    <li class="divider"></li>
+</ul>

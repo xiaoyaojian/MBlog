@@ -1,0 +1,20 @@
+﻿@using MiaoBlog.Services.ViewModels
+@model IEnumerable<MiaoBlog.Services.ViewModels.CommentSummaryView>
+
+<div class="comment-list">
+    @foreach (CommentSummaryView view in Model)
+    { 
+        <div class="comment-summary">
+            <div class="comment-summary-email">
+                @view.Email
+            </div>
+            <div class="comment-summary-content">
+                @view.Content
+            </div>
+            <div class="comment-summary-date">
+                @view.CommentTime
+            </div>
+        </div>
+    }
+</div>
+

@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AB77B5BB-B4D4-45BF-A8E1-130820F07E50}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MiaoBlog.Controllers</RootNamespace>
+    <AssemblyName>MiaoBlog.Controllers</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionArguments\ActionArgumentKey.cs" />
+    <Compile Include="ActionArguments\HttpRequestActionArguments.cs" />
+    <Compile Include="ActionArguments\IActionArguments.cs" />
+    <Compile Include="Controllers\AccountLogOnController.cs" />
+    <Compile Include="Controllers\AccountRegisterController.cs" />
+    <Compile Include="Controllers\ArticleCatalogBaseController.cs" />
+    <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="Controllers\BaseAccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="IoCControllerFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Account\AccountView.cs" />
+    <Compile Include="ViewModels\Account\FormDataKeys.cs" />
+    <Compile Include="ViewModels\ArticleCatalog\ArticleDetailView.cs" />
+    <Compile Include="ViewModels\ArticleCatalog\ArticleListPageView.cs" />
+    <Compile Include="ViewModels\ArticleCatalog\BaseArticleCatalogPageView.cs" />
+    <Compile Include="ViewModels\Account\CallBackSettings.cs" />
+    <Compile Include="ViewModels\UserAccount\UserDetailView.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MiaoBlog.Infrastructure\MiaoBlog.Infrastructure.csproj">
+      <Project>{8d3e4ecb-20fc-42e7-87e1-4b4865707d60}</Project>
+      <Name>MiaoBlog.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MiaoBlog.Services\MiaoBlog.Services.csproj">
+      <Project>{f60084cd-0865-4551-9452-642434c5fa17}</Project>
+      <Name>MiaoBlog.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

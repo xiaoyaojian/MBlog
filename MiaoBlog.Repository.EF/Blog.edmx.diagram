@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b521fef21a2b454d9fb3b75d8a711529" Name="关系图1">
+        <EntityTypeShape EntityType="MiaoBlog.Model.Article" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiaoBlog.Model.Category" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiaoBlog.Model.Comment" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiaoBlog.Model.Tag" Width="1.5" PointX="0.625" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="MiaoBlog.Model.FK_Blog_Article_Blog_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="MiaoBlog.Model.FK_Blog_Comment_Blog_Article" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MiaoBlog.Model.Article_Tag" Width="1.5" PointX="3.125" PointY="4.75" />
+        <AssociationConnector Association="MiaoBlog.Model.FK_Blog_Article_Tag_Blog_Article" />
+        <AssociationConnector Association="MiaoBlog.Model.FK_Blog_Article_Tag_Blog_Tag" />
+        <EntityTypeShape EntityType="MiaoBlog.Model.User" Width="1.5" PointX="5.25" PointY="4.5" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

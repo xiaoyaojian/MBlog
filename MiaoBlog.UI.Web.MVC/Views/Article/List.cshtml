@@ -1,0 +1,42 @@
+﻿@using MiaoBlog.Services.ViewModels
+@model MiaoBlog.Controllers.ViewModels.ArticleCatalog.ArticleListPageView
+
+<div class="row">
+    @foreach (ArticleSummaryView view in Model.ArticleSummarys)
+    { 
+        <article>
+            <div class="span9">
+                <ul class="thumbnails">
+                    <li class="span3 tile ">
+                        <a href="#" >
+                            <img src="">
+                            <h2>@view.CreateTime</h2>
+                        </a>
+                    </li>
+                </ul>
+                <div class="article-summary">
+                    <div class="article-summary-title">
+                        @Html.ActionLink(view.Title,"Detail","Article",new{articleId=view.Id},null)
+                    </div>
+                    <div class="article-summary-expert">
+                        @view.Excerpt
+                    </div>
+                    <div class="article-summary-tags">
+                        @foreach (TagSummaryView tagView in view.Tags)
+                        { 
+                            <span class="label label-info">
+                                @tagView.Name
+                            </span>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </article>
+    }
+</div>
+
+
+
+
+

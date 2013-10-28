@@ -1,0 +1,13 @@
+﻿@model MiaoBlog.Controllers.ViewModels.ArticleCatalog.ArticleDetailPageView
+
+@{
+    ViewBag.Title = Model.Article.Title;
+}
+
+<h1>@Model.Article.Title</h1>
+
+<div class="article-content">
+    @Model.Article.Content
+</div>
+
+@{Html.RenderPartial("CommentList", Model.Comments);}
