@@ -12,6 +12,7 @@ namespace MiaoBlog.Controllers
     {
         protected override IController GetControllerInstance(System.Web.Routing.RequestContext requestContext, Type controllerType)
         {
+
             return ObjectFactory.GetInstance(controllerType) as IController;
             //return base.GetControllerInstance(requestContext, controllerType);
         }
